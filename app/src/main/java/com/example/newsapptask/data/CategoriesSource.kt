@@ -3,7 +3,7 @@ package com.example.newsapptask.data
 import com.example.newsapptask.R
 import com.example.newsapptask.model.Category
 
-class CategoriesSource {
+object CategoriesSource {
     fun loadCategories():List<Category>{
         return listOf(
             Category(R.drawable.category_general,R.string.category_general),
