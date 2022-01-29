@@ -13,18 +13,24 @@ import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapptask.R
 import com.example.newsapptask.databinding.FragmentArticlesBinding
+import com.example.newsapptask.model.FavoriteNews
 import com.example.newsapptask.presentation.adapter.ArticlesAdapter
+import com.example.newsapptask.presentation.adapter.OnItemClickListener
+import com.example.newsapptask.presentation.viewModel.FavoriteNewsViewModel
 import com.example.newsapptask.presentation.viewModel.NewsViewModel
 import com.example.newsapptask.presentation.viewModel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlinx.coroutines.launch
 
-class ArticlesFragment : Fragment() {
+@AndroidEntryPoint
+class ArticlesFragment : Fragment(), OnItemClickListener {
     private var _binding: FragmentArticlesBinding? = null
     private val binding get() = _binding!!
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val newsViewModel: NewsViewModel by viewModels()
-    private lateinit var articleAdapter : ArticlesAdapter
+    private val favoriteViewModel: FavoriteNewsViewModel by viewModels()
+    private lateinit var articleAdapter: ArticlesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,7 +41,7 @@ class ArticlesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentArticlesBinding.inflate(inflater, container, false)
-        articleAdapter = ArticlesAdapter()
+        articleAdapter = ArticlesAdapter(this)
         binding.articleRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = articleAdapter
@@ -55,5 +61,18 @@ class ArticlesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemCLick(position: Int) {
+        lifecycle.coroutineScope.launch {
+            articleAdapter.currentList[position].title
+            favoriteViewModel.insertFavoriteNews(
+                FavoriteNews(
+                    title = articleAdapter.currentList[position].title,
+                    description = articleAdapter.currentList[position].description,
+                    category = articleAdapter.currentList[position].category
+                )
+            )
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.newsapptask.model
 
+import androidx.room.Entity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

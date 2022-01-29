@@ -5,28 +5,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.newsapptask.databinding.ArticleItemBinding
+import com.example.newsapptask.model.FavoriteNews
 import com.example.newsapptask.model.NewsItem
 
-class ArticlesAdapter(
+class FavoritesAdapter(
     private val listener: OnItemClickListener
-) : ListAdapter<NewsItem, ArticleViewHolder>(itemComparator) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
+): ListAdapter<FavoriteNews, FavoriteViewHolder>(itemComparator)  {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ArticleItemBinding.inflate(inflater, parent, false)
-        return ArticleViewHolder(binding,listener)
+        return FavoriteViewHolder(binding,listener)
     }
 
-    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     companion object {
-        val itemComparator = object : DiffUtil.ItemCallback<NewsItem>() {
-            override fun areItemsTheSame(oldItem: NewsItem, newItem: NewsItem): Boolean {
+        val itemComparator = object : DiffUtil.ItemCallback<FavoriteNews>() {
+            override fun areItemsTheSame(oldItem: FavoriteNews, newItem: FavoriteNews): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: NewsItem, newItem: NewsItem): Boolean {
+            override fun areContentsTheSame(oldItem: FavoriteNews, newItem: FavoriteNews): Boolean {
                 return oldItem.title == newItem.title
             }
 

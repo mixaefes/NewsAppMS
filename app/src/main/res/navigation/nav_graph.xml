@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_newsCategoriesFragment_to_articlesFragment"
             app:destination="@id/articlesFragment" />
+        <action
+            android:id="@+id/action_newsCategoriesFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment
         android:id="@+id/articlesFragment"
         android:name="com.example.newsapptask.presentation.ui.ArticlesFragment"
         android:label="fragment_articles"
         tools:layout="@layout/fragment_articles" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.newsapptask.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

@@ -12,7 +12,8 @@ object CategoriesSource {
             Category(R.drawable.category_science,R.string.category_science),
             Category(R.drawable.category_sport,R.string.category_sports),
             Category(R.drawable.category_entertainment,R.string.category_entertainment),
-            Category(R.drawable.category_technology,R.string.category_technology)
+            Category(R.drawable.category_technology,R.string.category_technology),
+            Category(R.drawable.category_favorites,R.string.category_favorites)
         )
     }
 }

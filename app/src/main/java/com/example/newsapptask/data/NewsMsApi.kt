@@ -15,7 +15,7 @@ import retrofit2.http.Query
 
 //   http://api.mediastack.com/v1/news?access_key=c140a0f1f3331748afd0d7a51a248b1b&limit=10&categories=business
 interface NewsMsApi {
-    @GET("news?access_key=c140a0f1f3331748afd0d7a51a248b1b&limit=10")
+    @GET("news?access_key=c140a0f1f3331748afd0d7a51a248b1b")
     suspend fun getNewsList(
         @Query("categories") categoryId : String
     ): NewsList

@@ -51,6 +51,9 @@ class NewsCategoriesFragment : Fragment(), OnItemClickListener {
         CategoriesSource.loadCategories()[position]?.let {
             sharedViewModel.selectCategory(requireContext().getString(it.nameSourceId))
         }
+        if(sharedViewModel.selectedCategory.value == requireContext().getString(R.string.category_favorites) ){
+            findNavController().navigate(R.id.action_newsCategoriesFragment_to_favoritesFragment)
+        } else
         findNavController().navigate(R.id.action_newsCategoriesFragment_to_articlesFragment)
     }
 }
