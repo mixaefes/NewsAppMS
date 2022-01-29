@@ -31,14 +31,11 @@ class ArticlesFragment : Fragment(), OnItemClickListener {
     private val newsViewModel: NewsViewModel by viewModels()
     private val favoriteViewModel: FavoriteNewsViewModel by viewModels()
     private lateinit var articleAdapter: ArticlesAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentArticlesBinding.inflate(inflater, container, false)
         articleAdapter = ArticlesAdapter(this)
@@ -51,7 +48,6 @@ class ArticlesFragment : Fragment(), OnItemClickListener {
         }
         lifecycle.coroutineScope.launch {
             newsViewModel.items.observe(viewLifecycleOwner) {
-                Log.i("ArticlesFragment", "newsList: $it")
                 articleAdapter.submitList(it.data)
             }
         }
@@ -65,12 +61,13 @@ class ArticlesFragment : Fragment(), OnItemClickListener {
 
     override fun onItemCLick(position: Int) {
         lifecycle.coroutineScope.launch {
-            articleAdapter.currentList[position].title
+            val currentNews = articleAdapter.currentList[position]
             favoriteViewModel.insertFavoriteNews(
                 FavoriteNews(
-                    title = articleAdapter.currentList[position].title,
-                    description = articleAdapter.currentList[position].description,
-                    category = articleAdapter.currentList[position].category
+                    title = currentNews.title,
+                    description = currentNews.description,
+                    category = currentNews.category,
+                    image = currentNews.image
                 )
             )
         }

@@ -20,10 +20,6 @@ class DatabaseModule {
     fun provideNewsDao(newsDatabase: FavoriteNewsDatabase): Dao {
         return newsDatabase.newsDao()
     }
-/*    @Provides
-    fun provideNewsRepository(newsDao: Dao): NewsRepository {
-        return NewsRepository(newsDao)
-    }*/
     @Provides
     @Singleton
     fun providePurchaseDatabase(@ApplicationContext appContext: Context):FavoriteNewsDatabase{

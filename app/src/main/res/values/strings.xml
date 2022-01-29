@@ -11,4 +11,5 @@
     <string name="category_technology">Technology</string>
     <string name="category_favorites">Favorites News</string>
     <string name="save_button">Save</string>
+    <string name="image_of_news">Image of news</string>
 </resources>

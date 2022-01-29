@@ -8,5 +8,6 @@ data class FavoriteNews(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String? = null,
     val description: String? = null,
-    var category: String? = null
+    var category: String? = null,
+    var image: String? = null
 )

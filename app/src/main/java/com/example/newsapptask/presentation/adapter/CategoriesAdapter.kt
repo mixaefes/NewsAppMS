@@ -28,7 +28,7 @@ class CategoriesAdapter(
 
     override fun getItemCount() = dataSet.size
 
-    class CategoryViewHolder(private val binding: CategoryItemBinding) :
+    class CategoryViewHolder(binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val textView = binding.categoryTextView
         val imageView = binding.categoryImageView

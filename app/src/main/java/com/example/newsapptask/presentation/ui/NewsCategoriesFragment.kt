@@ -23,14 +23,10 @@ class NewsCategoriesFragment : Fragment(), OnItemClickListener {
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private var categoryListAdapter: CategoriesAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNewsCategoriesBinding.inflate(inflater, container, false)
         val dataSet = CategoriesSource.loadCategories()
         categoryListAdapter = context?.let { CategoriesAdapter(it, dataSet, this) }
@@ -48,7 +44,7 @@ class NewsCategoriesFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemCLick(position: Int) {
-        CategoriesSource.loadCategories()[position]?.let {
+        CategoriesSource.loadCategories()[position].let {
             sharedViewModel.selectCategory(requireContext().getString(it.nameSourceId))
         }
         if(sharedViewModel.selectedCategory.value == requireContext().getString(R.string.category_favorites) ){
@@ -57,3 +53,4 @@ class NewsCategoriesFragment : Fragment(), OnItemClickListener {
         findNavController().navigate(R.id.action_newsCategoriesFragment_to_articlesFragment)
     }
 }
+

@@ -23,15 +23,5 @@ class FavoriteNewsViewModel @Inject constructor(
         repository.insertNews(favoriteNews)
     }
 }
-class PurchaseViewModelFactory(
-    private val repository: NewsRepository
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(FavoriteNewsViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return FavoriteNewsViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+
 
